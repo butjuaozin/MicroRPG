@@ -1,0 +1,116 @@
+# Micro- RPG
+
+from random import randint
+
+lista_npcs = []
+
+
+# Player
+player = {
+    "nome": input("Qual o nome de seu Heroi? "),
+    "level": 1,
+    "exp": 0,
+    "exp_max": 30,
+    "hp": 100,
+    "hp_max": 100,
+    "dano": 25,
+
+}
+
+
+# Criar NPCS
+def criar_npc(level):
+
+    novo_npc = {
+        "nome": f"Goblin Armado",
+        "level": level,
+        "dano": 5 * level,
+        "hp": 100 * level,
+        "hp_max": 100 * level,
+        "exp": 7 * level,
+
+    }
+
+    return novo_npc
+
+
+# Gerar NPCS
+def gerar_npcs(n_npc):
+    for x in range(n_npc):
+        novo_npc = criar_npc(x + 1)
+        lista_npcs.append(novo_npc)
+
+
+# Exibir NPCS
+print()
+def exibir_npcs():
+    for npc in lista_npcs:
+        exibir_npc(npc)
+
+def exibir_npc(npc):
+    print(f"{npc['nome']} // Level: {npc['level']} // Dano: {npc['dano']} // HP: {npc['hp']}")
+    print()
+
+# Exibir Player
+print()
+def exibir_player():
+    print(f"Nome: {player['nome']} // Level: {player['level']} // Dano: {player['dano']} // HP: {player['hp']}/{player['hp_max']} // EXP: {player['exp']}/{player['exp_max']} ")
+    print()
+
+# Reset de Atributos do Player
+def reset_player():
+    player['hp'] = player['hp_max']
+
+# Reset de Atributos do NPC
+def reset_npc(npc):
+    npc['hp'] = npc['hp_max']
+
+# Level Up
+def level_up():
+    if player['exp'] >= player['exp_max']:
+        player['level'] += 1
+        player['exp'] = 0
+        player['exp_max'] *= 2
+        player['hp_max'] += 20
+        player['dano'] += 25
+
+# Iniciar Batalha
+def iniciar_batalha(npc):
+    while player['hp'] > 0 and npc['hp'] > 0:
+        atacar_npc(npc)
+        atacar_player(npc)
+        info_batalha(npc)
+
+    if npc['hp'] == 0: #player win
+        print(f"O {player['nome']} venceu e ganhou {npc['exp']} de EXP!")
+        player['exp'] += npc['exp']
+        exibir_player()
+
+    else: #npc win
+        print(f"O {npc['nome']} venceu!")
+        exibir_npc(npc)
+    level_up()
+    reset_player()
+    reset_npc(npc)
+
+# Atacar NPC
+def atacar_npc(npc):
+    npc["hp"] -= player["dano"]
+
+# Atacar Player
+def atacar_player(npc):
+    player["hp"] -= npc["dano"]
+
+# Informações Sobre a Batalha
+def info_batalha(npc):
+    print(f"{player['nome']} Hp: {player['hp']}/{player['hp_max']}")
+    print(f"{npc['nome']}: {npc['hp']}/{npc['hp_max']}")
+    print('------------------------\n')
+
+
+gerar_npcs(1)
+exibir_npcs()
+
+
+npc_selecionado = lista_npcs[0]
+iniciar_batalha(npc_selecionado)
