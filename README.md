@@ -1,3 +1,22 @@
-Development of a simple game in Python focusing on programming logic and control structures. Implementation of a combat system, character progression, and terminal-based interaction. A project designed to reinforce fundamental concepts such as conditionals, loops, and code organization.
+Objetivo do Projeto
 
-Technologies: Python
+Desenvolver um mini RPG em Python com sistema de combate, progressão de personagem e interação pelo terminal, praticando lógica de programação, estruturas condicionais, loops e organização do código.
+
+Dificuldades Conhecidas:
+
+- Organização das funções e estruturas do jogo.
+- Controle do fluxo de combate.
+- Implementação da progressão do personagem.
+- Tratamento das escolhas e entradas do jogador.
+- Controle de condições de vitória e derrota.
+
+Etapas do Desenvolvimento:
+
+- Planejamento da estrutura básica do RPG.
+- Criação do personagem e seus atributos.
+- Implementação do sistema de combate.
+- Criação das interações e escolhas pelo terminal.
+- Implementação da progressão do personagem.
+- Adição das condições de vitória e derrota.
+- Organização e revisão do código.
+- Testes para corrigir erros e melhorar a experiência de jogo.
